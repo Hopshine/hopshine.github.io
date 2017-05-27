@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Personal tech blog, for android and ML, C/C++/Java/Python"><title>effective C++读书笔记 | 一只特立独行的猪</title><link rel="stylesheet" type="text/css" href="//fonts.css.network/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.3.0"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=1.3.0"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">effective C++读书笔记</h1><a id="logo" href="/.">一只特立独行的猪</a><p class="description">Tech blog</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">effective C++读书笔记</h1><div class="post-meta">May 27, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h3 id="1-将C-看成是一个集合"><a href="#1-将C-看成是一个集合" class="headerlink" title="1.将C++看成是一个集合"></a>1.将C++看成是一个集合</h3><p>C++可以看成是以下四个部分的集合：</p>
+<ul>
+<li>c</li>
+<li>c 面向对象</li>
+<li>模板</li>
+<li>STL编程</li>
+</ul>
+<h3 id="2-尽量以const、inline、enum来代替define"><a href="#2-尽量以const、inline、enum来代替define" class="headerlink" title="2. 尽量以const、inline、enum来代替define"></a>2. 尽量以const、inline、enum来代替define</h3><ul>
+<li>主要的目的是以编译系统的检查来防止某些错误</li>
+<li>define的作用域是全局的，而const等则可以避免这些污染</li>
+<li>以const和enum来替换define来定义常量</li>
+<li>以inline来替换define来替换函数</li>
+</ul>
+<h3 id="3-尽可能多的使用const"><a href="#3-尽可能多的使用const" class="headerlink" title="3.尽可能多的使用const"></a>3.尽可能多的使用const</h3><ul>
+<li>可以避免很多无意识的修改，特别是提供库给其他人使用的时候</li>
+<li>可以快速的定位问题，方便调试</li>
+<li>const在*左边，表示指向的变量是常量，防止则是指针不能再定向，形如：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">int</span> <span class="keyword">const</span> * p <span class="comment">// p指向的这个值不能变</span></div><div class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p <span class="comment">// p不能再指向其他的变量</span></div></pre></td></tr></table></figure>
+<ul>
+<li>const使用在成员函数和重载运算符时，可以加快效率，防止一些错误</li>
+<li>使用mutable来修饰成员变量，这样const成员函数就也可以修改它的值</li>
+</ul>
+<h3 id="4-确保对象使用前已经初始化"><a href="#4-确保对象使用前已经初始化" class="headerlink" title="4.确保对象使用前已经初始化"></a>4.确保对象使用前已经初始化</h3><ul>
+<li>对默认类型的变量也要注意初始化，否则会出现未定义的情况</li>
+<li>使用参数初始化列表来代替构造函数中的赋值</li>
+<li>构造函数中使用的是赋值而不是初始化，在某些场景下，赋值的代价会非常大</li>
+<li>使用单例模式来替换向外提供的全局变量，注意多线程</li>
+</ul>
+<h3 id="5-编译器自动做的函数"><a href="#5-编译器自动做的函数" class="headerlink" title="5.编译器自动做的函数"></a>5.编译器自动做的函数</h3><ul>
+<li>如果什么都没有写，系统会提供以下是个函数：<ul>
+<li>默认构造函数</li>
+<li>默认拷贝函数</li>
+<li>默认赋值拷贝函数</li>
+<li>默认析构函数（==注意是个非虚函数==）</li>
+</ul>
+</li>
+<li>如果声明了构造函数，那么系统不会生成不带参数的默认构造函数</li>
+<li>当成员变量中出现了赋值上的矛盾或未定义行为时，编译器将不会生成默认拷贝函数</li>
+</ul>
+<h3 id="6-组织编译器自动生成不应该有的函数"><a href="#6-组织编译器自动生成不应该有的函数" class="headerlink" title="6.组织编译器自动生成不应该有的函数"></a>6.组织编译器自动生成不应该有的函数</h3><p>有些情况下，一个类不应该被拷贝，这个时候应该禁止出现拷贝构造函数。但是如果我们不声明拷贝构造函数，那么编译器就会自己生成，对于这种情况，可行的策略是：</p>
+<ul>
+<li>声明构造函数并将其设置为private</li>
+<li>更好的做法是声明一个基类，基类中的对应函数声明为private，并只声明不实现</li>
+</ul>
+<h3 id="7-析构函数virtual化"><a href="#7-析构函数virtual化" class="headerlink" title="7.析构函数virtual化"></a>7.析构函数virtual化</h3><ul>
+<li>virtual函数会带来额外的内存负担，因为要维护一个虚表</li>
+<li>作为基类的类虚构函数必须用virtual，否则通过基类去析构派生类时会发生严重的内存泄露问题</li>
+<li>string类和STL类都不应该被继承，因为他们的析构函数都非虚</li>
+</ul>
+<h3 id="8-析构函数不应该抛出异常"><a href="#8-析构函数不应该抛出异常" class="headerlink" title="8.析构函数不应该抛出异常"></a>8.析构函数不应该抛出异常</h3><ul>
+<li>一个类很可能出现在一个数组中，如果当中某个发生了crash，那么剩余的可能都会抛出异常，多个异常抛出的时候，其处理行为是未定义的。解决的方式是：<ul>
+<li>将异常catch捕获</li>
+<li>直接终止std::abort()</li>
+<li>额外提供一个函数，而不是使用析构函数去完成这个动作，思路是：<ul>
+<li>提供一个管理类</li>
+<li>提供一个抛出异常的函数，让调用者去处理这个异常</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-不在构造和析构函数中去调用虚函数"><a href="#9-不在构造和析构函数中去调用虚函数" class="headerlink" title="9.不在构造和析构函数中去调用虚函数"></a>9.不在构造和析构函数中去调用虚函数</h3><ul>
+<li>当一个类作为基类时，在构造函数中去调用一个虚函数，会导致其子类构造时调用错误的函数。因为构造的顺序是先基类后子类，在初始化没有完成之前，调用到的会是基类的那一个。</li>
+<li>解决的方案：不使用虚函数，而使用一个非虚的函数加上参数去识别</li>
+</ul>
+<h3 id="10-重载-运算符时，应该返回-this"><a href="#10-重载-运算符时，应该返回-this" class="headerlink" title="10.重载 = 运算符时，应该返回*this"></a>10.重载 = 运算符时，应该返回*this</h3><p>好处：可以实现连锁复制</p>
+<h3 id="11-防止-出现只我赋值"><a href="#11-防止-出现只我赋值" class="headerlink" title="11. 防止 = 出现只我赋值"></a>11. 防止 = 出现只我赋值</h3><p>在重载 = 时，应该做判断</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">A&amp; A::opeartion=(<span class="keyword">const</span> A&amp; another) &#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">this</span> == &amp;another) <span class="comment">// if same, return</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="12-复制函数时应该赋值每一个部分"><a href="#12-复制函数时应该赋值每一个部分" class="headerlink" title="12. 复制函数时应该赋值每一个部分"></a>12. 复制函数时应该赋值每一个部分</h3><p>尤其注意，覆写子类的拷贝构造函数时，应该调用父类的构造函数</p>
+<hr>
+<h3 id="13-用对象来管理资源"><a href="#13-用对象来管理资源" class="headerlink" title="13.用对象来管理资源"></a>13.用对象来管理资源</h3><ul>
+<li>不应该企图用函数的调用流程来保证资源一定会释放，而是是用一个对象，在对象的析构函数中释放资源</li>
+<li>可以考虑使用只能指针来避免这个问题，但是仍有危险</li>
+<li>智能指针不允许多个引用同时指向一个量，复制会让前面一个值为null</li>
+<li>引用计数智能指针可以部分解决这个问题，采用的是计数方式，当然也存在循环引用的问题</li>
+<li>注意，一般的智能指针的析构函数的实现都是 delete <em>p，而不会delete </em>p[]，这意味着，将智能指针用在数组中并不合适</li>
+</ul>
+<h3 id="14-注意资源管理类中的复制行为"><a href="#14-注意资源管理类中的复制行为" class="headerlink" title="14. 注意资源管理类中的复制行为"></a>14. 注意资源管理类中的复制行为</h3><ul>
+<li>有的资源是独占式的（比如说同步锁），在这种情况下，应该机制其拷贝函数。</li>
+<li>对于需要拷贝资源的情况，可以考虑使用计数方式管理</li>
+</ul>
+<h3 id="15-资源管理类中应当提供对原始资源的访问"><a href="#15-资源管理类中应当提供对原始资源的访问" class="headerlink" title="15. 资源管理类中应当提供对原始资源的访问"></a>15. 资源管理类中应当提供对原始资源的访问</h3><p>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class FontManager &#123;</div><div class="line">    private:</div><div class="line">        Font font;</div><div class="line">    ...</div><div class="line">    </div><div class="line">    public:</div><div class="line">        Font getFont() </div><div class="line">        &#123;</div><div class="line">            return font;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>记住一个原则就是，资源管理类是为了减少资源的泄露和使用的难度，故而设计原则应该是：隐藏被调用者不需要看到的东西，但是应该完备的提供可能会用到的东西</p>
+<h3 id="16-new-和-delete应该成对的使用。具体来说，new如果是new的数组，delete时候也应该是数组，反之亦然"><a href="#16-new-和-delete应该成对的使用。具体来说，new如果是new的数组，delete时候也应该是数组，反之亦然" class="headerlink" title="16. new 和 delete应该成对的使用。具体来说，new如果是new的数组，delete时候也应该是数组，反之亦然"></a>16. new 和 delete应该成对的使用。具体来说，new如果是new的数组，delete时候也应该是数组，反之亦然</h3><h3 id="17-使用智能指针时，将new出的对象放入智能指针中应该单独写一个语句"><a href="#17-使用智能指针时，将new出的对象放入智能指针中应该单独写一个语句" class="headerlink" title="17. 使用智能指针时，将new出的对象放入智能指针中应该单独写一个语句"></a>17. 使用智能指针时，将new出的对象放入智能指针中应该单独写一个语句</h3><p>反面教材是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">process(auto_ptr&lt;DemoC&gt; p(new DemoC(), generateParameter())</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="18-尽量让接口正确使用"><a href="#18-尽量让接口正确使用" class="headerlink" title="18. 尽量让接口正确使用"></a>18. 尽量让接口正确使用</h3><ul>
+<li>对输入的参数进行强制类型的规定，必要的时候引入enum，自定义结构体，做参数检查等</li>
+<li>保持与一般的使用情形相一致</li>
+<li>注意结构的一致性，同一类接口不应该用不同的方法去实现，比如求取一个容器类的大小，可以是</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">list.size</div><div class="line">list.size()</div><div class="line">list.count</div><div class="line">list.count()</div><div class="line">list.length</div><div class="line">list.length()</div></pre></td></tr></table></figure>
+<p>诸如这样的接口基本上都能看到，但是在同一份代码中，应该尽量统一，以免造成混乱。</p>
+<ul>
+<li>可以想办法限制用户的操作，比如将返回的值放入智能指针中</li>
+</ul>
+<h3 id="19-定义一个类应该注意哪些方面"><a href="#19-定义一个类应该注意哪些方面" class="headerlink" title="19. 定义一个类应该注意哪些方面"></a>19. 定义一个类应该注意哪些方面</h3><ul>
+<li>如何被创建和销毁</li>
+<li>初始化和赋值的区别</li>
+<li>如果以值传递后果是什么</li>
+<li>考虑类的约束条件</li>
+<li>考虑继承的问题</li>
+<li>考虑类的类型转换问题（包括隐私转换和其他类的转换）</li>
+</ul>
+<h3 id="20-以const引用来代替值传递"><a href="#20-以const引用来代替值传递" class="headerlink" title="20. 以const引用来代替值传递"></a>20. 以const引用来代替值传递</h3><ul>
+<li>可以节省大量的时间，因为值传递意味着构造函数和函数调用完后的析构函数的调用，也包括其中的内部类对象</li>
+<li>可以防止类型切割的问题，所谓的类型切割，形如：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">    private:</div><div class="line">    demo();</div><div class="line">&#125;;</div><div class="line"></div><div class="line">class B : public A &#123;</div><div class="line">  demo();  </div><div class="line">&#125;;</div><div class="line"></div><div class="line">void process(A a) &#123;</div><div class="line">    a.demo();</div><div class="line">&#125;</div><div class="line"></div><div class="line">B b = B()</div><div class="line">process(b)  //最终会调用基类的demo函数</div></pre></td></tr></table></figure>
+<ul>
+<li>一般来说，内置对象和stl对象可以用值传递，其他的建议使用const引用传递</li>
+</ul>
+<h3 id="21-不要在类的内部方法中返回一个引用"><a href="#21-不要在类的内部方法中返回一个引用" class="headerlink" title="21.不要在类的内部方法中返回一个引用"></a>21.不要在类的内部方法中返回一个引用</h3><ul>
+<li>很有可能造成一个空的引用</li>
+<li>也不能试图用静态变量，这样会造成同一种类型的对象运算时出错</li>
+<li>与20条对应，用引用代替值传递这种事情应该在调用端去实现，而不是在实现者中实现</li>
+</ul>
+<h3 id="22-将类成员变量设置成private"><a href="#22-将类成员变量设置成private" class="headerlink" title="22.将类成员变量设置成private"></a>22.将类成员变量设置成private</h3><ul>
+<li>参照18条，保持接口的一致性</li>
+<li>面向接口编程而不是实现编程，这样的好处是在实现更改时，可以保证对外的一致性</li>
+<li>protectd并不比public的封装性好</li>
+</ul>
+<h3 id="23-若功能可以在类外部通过已有的接口实现，就没有必要把它放在类内部实现"><a href="#23-若功能可以在类外部通过已有的接口实现，就没有必要把它放在类内部实现" class="headerlink" title="23. 若功能可以在类外部通过已有的接口实现，就没有必要把它放在类内部实现"></a>23. 若功能可以在类外部通过已有的接口实现，就没有必要把它放在类内部实现</h3><p>好处有两个：</p>
+<ol>
+<li>可以增加类的灵活性，可扩展性</li>
+<li>有助于减少依赖</li>
+</ol>
+<h3 id="24-若所有参数都需要类型转换，那么应该使用外部函数"><a href="#24-若所有参数都需要类型转换，那么应该使用外部函数" class="headerlink" title="24. 若所有参数都需要类型转换，那么应该使用外部函数"></a>24. 若所有参数都需要类型转换，那么应该使用外部函数</h3><h3 id="25-关于swap函数"><a href="#25-关于swap函数" class="headerlink" title="25. 关于swap函数"></a>25. 关于swap函数</h3><ul>
+<li>如果系统系统的swap（std::swap()）函数效率可以接受，调用即可</li>
+<li>如果效率不行，可以考虑提供一个对外的swap接口</li>
+</ul>
+<hr>
+<h3 id="26-尽可能晚的定义变量"><a href="#26-尽可能晚的定义变量" class="headerlink" title="26. 尽可能晚的定义变量"></a>26. 尽可能晚的定义变量</h3><ul>
+<li>要用到的时候再定义（直到能给出实参为止）</li>
+<li>尽可能跳过无意义的默认构造函数，在初始化的时候直接用参数列表的方式初始化</li>
+<li>对于要使用变量放入循环中赋值时，需要考虑成本</li>
+</ul>
+<h3 id="27-尽量少的转型"><a href="#27-尽量少的转型" class="headerlink" title="27. 尽量少的转型"></a>27. 尽量少的转型</h3><ul>
+<li>旧式的转型应该少用</li>
+<li>提供了四类新式转换<ul>
+<li>const_cast: 将const变为非const</li>
+<li>dymatic_cast：向下安全转型，但是可能耗费大量运行成本</li>
+<li>reincept_cast：向低级转换，很少见</li>
+<li>static_cast：强制隐式转换</li>
+</ul>
+</li>
+<li>总的原则是，能不用转换就不用</li>
+</ul>
+<h3 id="28-避免返回的handle指向内部"><a href="#28-避免返回的handle指向内部" class="headerlink" title="28. 避免返回的handle指向内部"></a>28. 避免返回的handle指向内部</h3><ul>
+<li>其实和21相同，这一条可以略过</li>
+<li>记住如果一定要返回reference，记得带上const</li>
+</ul>
+<h3 id="29-关于异常"><a href="#29-关于异常" class="headerlink" title="29. 关于异常"></a>29. 关于异常</h3><ul>
+<li>需要在设计函数的时候将异常的情况考虑在内</li>
+<li>处理异常可以分成三个等级：<ul>
+<li>基本保证。即异常情况发生之后，程序仍然会正常运行，不会扰乱控制流</li>
+<li>强烈保证，类似于用先复制后删除来代替剪切。当程序发生异常时，可以回到执行之前的状态</li>
+<li>不抛出承诺</li>
+</ul>
+</li>
+</ul>
+<h3 id="30-关于内联函数"><a href="#30-关于内联函数" class="headerlink" title="30. 关于内联函数"></a>30. 关于内联函数</h3><ul>
+<li>inline函数会造成程序的体积变大</li>
+<li>inline函数由于展开的特性，其调试会非常困难，因为不可能在一个不存在的地方打断点</li>
+<li>inline只是一个编译优化的建议而非编译器一定会采取的行为</li>
+<li>inline函数会在函数实现发生更改时，造成所有引用它的模块都必须重新编译</li>
+</ul>
+<h3 id="31-降低文件间的依赖关系"><a href="#31-降低文件间的依赖关系" class="headerlink" title="31. 降低文件间的依赖关系"></a>31. 降低文件间的依赖关系</h3><p>对于一个常见的类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">    public:</div><div class="line">    A (DataA d1, DataB d2, DataC d3)</div><div class="line">    private:</div><div class="line">        DataA a;</div><div class="line">        DataB b;</div><div class="line">        DataC c;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上的代码会让classA依赖于DataA，DataB和DataC的实现，无心当中就造成了相当严重的依赖。而这些依赖在编译期间是必须使用的，因为要确定每个变量所占空间的大小。为了解决这种困境，可以使用的方法就是，使用指针而不使用具体的对象。因为对象的大小是可以确定的，只要来一个前置声明即可，i.e.,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">    public:</div><div class="line">    A (DataA *d1, DataB *d2, DataC *d3)</div><div class="line">    private:</div><div class="line">        DataA *a;</div><div class="line">        DataB *b;</div><div class="line">        DataC *c;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="32-公有继承只能刻画is-a的关系"><a href="#32-公有继承只能刻画is-a的关系" class="headerlink" title="32. 公有继承只能刻画is-a的关系"></a>32. 公有继承只能刻画is-a的关系</h3><p>道理很简单，但是要考虑清楚一点，有些事情会反直觉</p>
+<h3 id="33-避免覆盖基类的声明"><a href="#33-避免覆盖基类的声明" class="headerlink" title="33. 避免覆盖基类的声明"></a>33. 避免覆盖基类的声明</h3><ul>
+<li>在共有集成时，不要使用和基类一模一样的非虚函数名称</li>
+<li>如果基类中有你不想要继承而是想覆写的方法，说明is-a的关系是有问题的</li>
+</ul>
+<h3 id="34-区分接口继承和实现继承"><a href="#34-区分接口继承和实现继承" class="headerlink" title="34. 区分接口继承和实现继承"></a>34. 区分接口继承和实现继承</h3><ul>
+<li>纯虚函数意味着继承接口，子类必须要将接口实现</li>
+<li>非纯虚函数意味着提供一个缺省的实现，如此一来，子类中就有一个默认的实现</li>
+<li>非虚函数意味着，所有子类的行为应该一致，不允许发挥</li>
+<li>应该考虑将默认行为函数和接口分离，以免造成后来维护的人的误解</li>
+</ul>
+<h3 id="35-nvi手法"><a href="#35-nvi手法" class="headerlink" title="35. nvi手法"></a>35. nvi手法</h3><p>可以将一些共性提取出来，放在基类函数的非纯虚函数中，得到一个默认实现。而在这个默认的实现中，调用纯虚函数，这个纯虚函数要求子类去实现。在实现的手法上，破有一种java的interface回调的意味。</p>
+<h3 id="36-不要重载一个非虚函数"><a href="#36-不要重载一个非虚函数" class="headerlink" title="36. 不要重载一个非虚函数"></a>36. 不要重载一个非虚函数</h3><h3 id="37-不要更改继承而来的方法的默认值"><a href="#37-不要更改继承而来的方法的默认值" class="headerlink" title="37. 不要更改继承而来的方法的默认值"></a>37. 不要更改继承而来的方法的默认值</h3><ul>
+<li>覆写了默认值之后，会造成不同的方式调用子类方法，具体的实现不一致</li>
+<li>将子类和基类的默认值保持一致可以保证行为一致，但是有两个问题：<ol>
+<li>代码重复</li>
+<li>当基类的默认值发生改变时，所有的子类的默认值都需要更改<br>解决以上问题的方案是使用nvi的手法，使用一个非虚函数去调用这个虚函数，在调用的过程中赋予一个默认值。这样就两全其美了。</li>
+</ol>
+</li>
+</ul>
+<h3 id="38-能使用组合完成任务的时候不要使用继承"><a href="#38-能使用组合完成任务的时候不要使用继承" class="headerlink" title="38. 能使用组合完成任务的时候不要使用继承"></a>38. 能使用组合完成任务的时候不要使用继承</h3><h3 id="39-谨慎的使用私有继承"><a href="#39-谨慎的使用私有继承" class="headerlink" title="39. 谨慎的使用私有继承"></a>39. 谨慎的使用私有继承</h3><ul>
+<li>私有继承在大部分情况下可以使用符合去完成</li>
+<li>在面对两个类而又要覆写当中多个虚函数的时候，私有继承是可以考虑的</li>
+<li>从层次上来说，私有继承不处于设计的层次上，而处于实现的层次上。</li>
+</ul>
+<h3 id="40-谨慎的使用多重继承"><a href="#40-谨慎的使用多重继承" class="headerlink" title="40. 谨慎的使用多重继承"></a>40. 谨慎的使用多重继承</h3><ul>
+<li>多重继承一般能不用就不用</li>
+<li>为了避免菱形继承的出现，应该使用虚继承，否则会出现祖先基类的两份拷贝。但是应该注意，不应该在没有确实必要的情况下使用虚继承，因为这样回造成大量的损耗</li>
+</ul>
+<hr>
+<h3 id="41-template其实就是一种编译器多态"><a href="#41-template其实就是一种编译器多态" class="headerlink" title="41. template其实就是一种编译器多态"></a>41. template其实就是一种编译器多态</h3><ul>
+<li>并不需要在实例化之后才能确定类型</li>
+<li>需要实现规定好接口</li>
+</ul>
+<h3 id="42-声明template参数时，class和typename是等价的"><a href="#42-声明template参数时，class和typename是等价的" class="headerlink" title="42. 声明template参数时，class和typename是等价的"></a>42. 声明template参数时，class和typename是等价的</h3><h3 id="43-当template的具体类型是子类"><a href="#43-当template的具体类型是子类" class="headerlink" title="43. 当template的具体类型是子类"></a>43. 当template的具体类型是子类</h3><p>当tempalte中的集体类型是一个子类，而这个子类去试图调用基类的方法时，会发生编译错误。原因很简单，41中说明，template是编译期的多态，因此在编译时就要确认到底是那种类型。解决的方案：</p>
+<ul>
+<li>加上this</li>
+<li>使用using，或者直接加上作用域限定符</li>
+</ul>
+<h3 id="44-避免由于template导致编译出的代码膨胀"><a href="#44-避免由于template导致编译出的代码膨胀" class="headerlink" title="44. 避免由于template导致编译出的代码膨胀"></a>44. 避免由于template导致编译出的代码膨胀</h3><p>应该剥离出不变的部分，而将相同的部分放入template中</p>
+<p><del>==关于template编程和stl编程少有接触，略去==</del></p>
+<h3 id="45-略"><a href="#45-略" class="headerlink" title="45. 略"></a>45. 略</h3><h3 id="46-略"><a href="#46-略" class="headerlink" title="46. 略"></a>46. 略</h3><h3 id="47-略"><a href="#47-略" class="headerlink" title="47. 略"></a>47. 略</h3><h3 id="48-略"><a href="#48-略" class="headerlink" title="48. 略"></a>48. 略</h3><hr>
+<h3 id="49-可以使用set-new-handler来定制化new出现异常时的处理函数"><a href="#49-可以使用set-new-handler来定制化new出现异常时的处理函数" class="headerlink" title="49. 可以使用set_new_handler来定制化new出现异常时的处理函数"></a>49. 可以使用set_new_handler来定制化new出现异常时的处理函数</h3><ul>
+<li>这种定制可以在new之前调用，在调用完毕之后set为null</li>
+<li>可以在类的内部指定一个new的handler</li>
+</ul>
+<h3 id="50-可以自定义new和delete"><a href="#50-可以自定义new和delete" class="headerlink" title="50. 可以自定义new和delete"></a>50. 可以自定义new和delete</h3><ul>
+<li>编译器自带的new和delete往往并不是最适合的</li>
+<li>可以通过覆写new和delete的提高性能</li>
+<li>可以提供错误调试信息，给出统计等</li>
+</ul>
+<h3 id="51-略去"><a href="#51-略去" class="headerlink" title="51. 略去"></a>51. 略去</h3><h3 id="52-略去"><a href="#52-略去" class="headerlink" title="52. 略去"></a>52. 略去</h3><hr>
+<h3 id="53-重视编译器的警告信息"><a href="#53-重视编译器的警告信息" class="headerlink" title="53. 重视编译器的警告信息"></a>53. 重视编译器的警告信息</h3><h3 id="54-熟悉STL"><a href="#54-熟悉STL" class="headerlink" title="54. 熟悉STL"></a>54. 熟悉STL</h3><h3 id="55-熟悉Boost"><a href="#55-熟悉Boost" class="headerlink" title="55. 熟悉Boost"></a>55. 熟悉Boost</h3></div><div class="tags"><a href="/tags/C-note/">C++, note</a></div><div class="post-nav"><a href="/2017/04/17/new-post-in-mac/" class="pre">new post in mac</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="widget"><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="请输入关键字..."/></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/C-note/" style="font-size: 15px;">C++, note</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-fei"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/effective-C-读书笔记/">effective C++读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/17/new-post-in-mac/">new post in mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/13/Write-Plan/">Write Plan</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/13/hello-world/">Hello World</a></li></ul></div></div></div></div><a id="totop" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.3.0" async></script><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |<a href="/atom.xml">订阅本站</a> |<span>联系博主：<a href="mailto:null" target="_blank" class="fa fa-email"> </a><a href="null" target="_blank" class="fa fa-weibo"></a><a href="null" target="_blank" class="fa fa-github"> </a></span></p><p><span> Copyright &copy;<a href="/." rel="nofollow">Edward Shine</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span><span><a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> Theme </a>by<a rel="nofollow" target="_blank" href="https://github.com/chaooo"> Charles.</a></span></p></div></div></div><script type="text/javascript" src="/js/search.json.js?v=1.3.0"></script></body></html>
