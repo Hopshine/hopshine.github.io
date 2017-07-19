@@ -1,4 +1,28 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Personal tech blog, for android and ML, C/C++/Java/Python"><title>effective C++读书笔记 | 一只特立独行的猪</title><link rel="stylesheet" type="text/css" href="//fonts.css.network/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.3.0"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=1.3.0"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">effective C++读书笔记</h1><a id="logo" href="/.">一只特立独行的猪</a><p class="description">Tech blog</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">effective C++读书笔记</h1><div class="post-meta">May 27, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h3 id="1-将C-看成是一个集合"><a href="#1-将C-看成是一个集合" class="headerlink" title="1.将C++看成是一个集合"></a>1.将C++看成是一个集合</h3><p>C++可以看成是以下四个部分的集合：</p>
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>一只特立独行的猪</title>
+  <subtitle>Tech blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://hopshine.github.io/"/>
+  <updated>2017-05-27T04:27:39.000Z</updated>
+  <id>http://hopshine.github.io/</id>
+  
+  <author>
+    <name>Edward Shine</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>effective C++读书笔记</title>
+    <link href="http://hopshine.github.io/2017/05/27/effective-C-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>http://hopshine.github.io/2017/05/27/effective-C-读书笔记/</id>
+    <published>2017-05-27T04:26:01.000Z</published>
+    <updated>2017-05-27T04:27:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-将C-看成是一个集合"><a href="#1-将C-看成是一个集合" class="headerlink" title="1.将C++看成是一个集合"></a>1.将C++看成是一个集合</h3><p>C++可以看成是以下四个部分的集合：</p>
 <ul>
 <li>c</li>
 <li>c 面向对象</li>
@@ -223,4 +247,91 @@
 <li>可以提供错误调试信息，给出统计等</li>
 </ul>
 <h3 id="51-略去"><a href="#51-略去" class="headerlink" title="51. 略去"></a>51. 略去</h3><h3 id="52-略去"><a href="#52-略去" class="headerlink" title="52. 略去"></a>52. 略去</h3><hr>
-<h3 id="53-重视编译器的警告信息"><a href="#53-重视编译器的警告信息" class="headerlink" title="53. 重视编译器的警告信息"></a>53. 重视编译器的警告信息</h3><h3 id="54-熟悉STL"><a href="#54-熟悉STL" class="headerlink" title="54. 熟悉STL"></a>54. 熟悉STL</h3><h3 id="55-熟悉Boost"><a href="#55-熟悉Boost" class="headerlink" title="55. 熟悉Boost"></a>55. 熟悉Boost</h3></div><div class="tags"><a href="/tags/C-note/">C++, note</a></div><div class="post-nav"><a href="/2017/04/17/new-post-in-mac/" class="pre">new post in mac</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="widget"><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="请输入关键字..."/></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/C-note/" style="font-size: 15px;">C++, note</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-fei"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/effective-C-读书笔记/">effective C++读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/17/new-post-in-mac/">new post in mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/13/Write-Plan/">Write Plan</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/13/hello-world/">Hello World</a></li></ul></div></div></div></div><a id="totop" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.3.0" async></script><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |<a href="/atom.xml">订阅本站</a> |<span>联系博主：<a href="mailto:null" target="_blank" class="fa fa-email"> </a><a href="null" target="_blank" class="fa fa-weibo"></a><a href="null" target="_blank" class="fa fa-github"> </a></span></p><p><span> Copyright &copy;<a href="/." rel="nofollow">Edward Shine</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span><span><a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> Theme </a>by<a rel="nofollow" target="_blank" href="https://github.com/chaooo"> Charles.</a></span></p></div></div></div><script type="text/javascript" src="/js/search.json.js?v=1.3.0"></script></body></html>
+<h3 id="53-重视编译器的警告信息"><a href="#53-重视编译器的警告信息" class="headerlink" title="53. 重视编译器的警告信息"></a>53. 重视编译器的警告信息</h3><h3 id="54-熟悉STL"><a href="#54-熟悉STL" class="headerlink" title="54. 熟悉STL"></a>54. 熟悉STL</h3><h3 id="55-熟悉Boost"><a href="#55-熟悉Boost" class="headerlink" title="55. 熟悉Boost"></a>55. 熟悉Boost</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-将C-看成是一个集合&quot;&gt;&lt;a href=&quot;#1-将C-看成是一个集合&quot; class=&quot;headerlink&quot; title=&quot;1.将C++看成是一个集合&quot;&gt;&lt;/a&gt;1.将C++看成是一个集合&lt;/h3&gt;&lt;p&gt;C++可以看成是以下四个部分的集合：&lt;/p&gt;
+&lt;ul&gt;
+
+    
+    </summary>
+    
+    
+      <category term="C++, note" scheme="http://hopshine.github.io/tags/C-note/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>new post in mac</title>
+    <link href="http://hopshine.github.io/2017/04/17/new-post-in-mac/"/>
+    <id>http://hopshine.github.io/2017/04/17/new-post-in-mac/</id>
+    <published>2017-04-17T02:24:44.000Z</published>
+    <updated>2017-05-27T04:29:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="This-is-a-test-in-mac"><a href="#This-is-a-test-in-mac" class="headerlink" title="This is a test in mac"></a>This is a test in mac</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;This-is-a-test-in-mac&quot;&gt;&lt;a href=&quot;#This-is-a-test-in-mac&quot; class=&quot;headerlink&quot; title=&quot;This is a test in mac&quot;&gt;&lt;/a&gt;This is a test in mac&lt;/
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Write Plan</title>
+    <link href="http://hopshine.github.io/2017/04/13/Write-Plan/"/>
+    <id>http://hopshine.github.io/2017/04/13/Write-Plan/</id>
+    <published>2017-04-13T08:56:45.000Z</published>
+    <updated>2017-04-13T09:11:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="写作计划"><a href="#写作计划" class="headerlink" title="写作计划"></a>写作计划</h1><hr>
+<h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p>一直以来想将各种总结放在网站上，但是由于各种原因一直未能成型。加之这个写作界面实在谈不上友好，故而一迟迟没有行动。<br>这次，下定决定，搞起来了</p>
+<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul>
+<li>迁移之前的笔记，特别是android方面的总结和教训</li>
+<li>将新的笔记放到这上面，主要是机器学习方面的知识</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;写作计划&quot;&gt;&lt;a href=&quot;#写作计划&quot; class=&quot;headerlink&quot; title=&quot;写作计划&quot;&gt;&lt;/a&gt;写作计划&lt;/h1&gt;&lt;hr&gt;
+&lt;h2 id=&quot;初衷&quot;&gt;&lt;a href=&quot;#初衷&quot; class=&quot;headerlink&quot; title=&quot;初衷&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+    
+      <category term="Summary" scheme="http://hopshine.github.io/tags/Summary/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://hopshine.github.io/2017/04/13/hello-world/"/>
+    <id>http://hopshine.github.io/2017/04/13/hello-world/</id>
+    <published>2017-04-13T07:48:16.000Z</published>
+    <updated>2017-04-13T07:48:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
