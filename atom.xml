@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hopshine.github.io/"/>
-  <updated>2018-03-20T06:59:58.831Z</updated>
+  <updated>2018-03-20T07:11:56.258Z</updated>
   <id>http://hopshine.github.io/</id>
   
   <author>
@@ -20,14 +20,24 @@
     <link href="http://hopshine.github.io/2018/03/09/2017%E6%9D%82%E6%84%9F/"/>
     <id>http://hopshine.github.io/2018/03/09/2017杂感/</id>
     <published>2018-03-09T15:54:03.000Z</published>
-    <updated>2018-03-20T06:59:58.831Z</updated>
+    <updated>2018-03-20T07:11:56.258Z</updated>
     
     <content type="html"><![CDATA[<h2 id="最后，我终于还是离开了"><a href="#最后，我终于还是离开了" class="headerlink" title="最后，我终于还是离开了"></a>最后，我终于还是离开了</h2><p>在经历了一番挣扎之后，我终于决定离开这个不痛不痒的地方<br>是该换个地方了</p>
 <p>现在回想起来，应该早点离开，对于现在的我而言，时间非常的重要。在一个没有前途的岗位上做了这么长时间无疑是白白浪费了很多的资源，也为自己的职业生涯舔加了一抹灰色。AI 的风口已然过去，最昂贵的浪费其实是机遇和风口。</p>
 <hr>
 <h2 id="得与失"><a href="#得与失" class="headerlink" title="得与失"></a>得与失</h2><ul>
-<li>技能上</li>
-<li>认知上</li>
+<li>技能上。懂得了 linux 平台和 Windows平台上库的封装，了解了对外业务的一些基本规矩。<ul>
+<li>对外接口不能随意更改，即接口的稳定性</li>
+<li>注意代码的隐蔽性，不能让人看到过多的细节</li>
+<li>对代码的质量要有严格的管控。对外提供接口，很多问题是难于复现的。在此种条件下，解决问题的方法只有两种：<ol>
+<li>对代码高度熟悉和负责，使得代码的 bug 尽量的少，而不要寄希望于测试和后期补救。</li>
+<li>做好日志的管理，多使用断言和 bug 收集工作</li>
+</ol>
+</li>
+<li>需要对使用的场景，用户的具体需求有清晰的认识</li>
+</ul>
+</li>
+<li>行业认知上</li>
 <li>管理经验上</li>
 </ul>
 ]]></content>
