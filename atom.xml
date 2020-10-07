@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hopshine.github.io/"/>
-  <updated>2019-07-19T16:16:31.647Z</updated>
+  <updated>2020-10-07T17:12:10.861Z</updated>
   <id>http://hopshine.github.io/</id>
   
   <author>
@@ -16,11 +16,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>C++使用的一些感悟</title>
+    <link href="http://hopshine.github.io/2020/10/08/C-%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/"/>
+    <id>http://hopshine.github.io/2020/10/08/C-使用的一些感悟/</id>
+    <published>2020-10-07T17:06:17.000Z</published>
+    <updated>2020-10-07T17:12:10.861Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="契机"><a href="#契机" class="headerlink" title="契机"></a>契机</h3><p>使用C++已经有接近一年多了，这一年多里，对于C++的了解有了长足的进步。<br>C++最大的障碍不是其语法本身，而是来自于面向对象的复杂性和C++的高自由度带来的语义的二义性。</p>
+<h3 id="STL和新特性"><a href="#STL和新特性" class="headerlink" title="STL和新特性"></a>STL和新特性</h3><p>以前感觉这些里我们都很遥远，但是现在发现STL库对开发者来说其实非常友好。可以省去大量需要造轮子的工作，而且其安全性和性能也有相当大的保障<br>很多新的特性，对于优化代码起到了很大的作用，比如using、enum class, orerride, auto等</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;契机&quot;&gt;&lt;a href=&quot;#契机&quot; class=&quot;headerlink&quot; title=&quot;契机&quot;&gt;&lt;/a&gt;契机&lt;/h3&gt;&lt;p&gt;使用C++已经有接近一年多了，这一年多里，对于C++的了解有了长足的进步。&lt;br&gt;C++最大的障碍不是其语法本身，而是来自于面向对象的复杂性
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>python学习</title>
     <link href="http://hopshine.github.io/2019/07/19/python%E5%AD%A6%E4%B9%A0/"/>
     <id>http://hopshine.github.io/2019/07/19/python学习/</id>
     <published>2019-07-19T15:55:49.000Z</published>
-    <updated>2019-07-19T16:16:31.647Z</updated>
+    <updated>2019-07-19T16:16:31.648Z</updated>
     
     <content type="html"><![CDATA[<p>使用了python很长时间，最开始基础python的时候是在2014年，使用python开发cocos2d，想来这也是公司的创举，现在cocos都是使用js binding和lua binding了。</p>
 <p>再后来使用python就是很晚的时候，到了2018年，为了使用AI技术，而大量的AI方案都是使用python，加上python在后端开发上也相对成熟，所以就使用了python来开发网站。</p>
